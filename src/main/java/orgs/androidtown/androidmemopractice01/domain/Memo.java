@@ -16,13 +16,14 @@ public class Memo {
     public Memo(){
 
     }
-    public Memo(String text){
+    public Memo(String text){ // 생성자로 뭔가가 들어올때, parse()메소드가 호출됨.
         parse(text);
     }
 
     public void parse(String text){
+        //1. 문자열을 줄("\n")단위로 분해
         String lines[] = text.split("\n");
-
+        //2. 문자열을 행("위에 DELIMETER")단위로 분해
         for(String line : lines){
             String columns[] = line.split(DELIMETER);
             String key = "";
@@ -111,6 +112,6 @@ public class Memo {
     }
 
     public byte[] toBytes(){
-        return toString().getBytes(); //왜지?
+        return toString().getBytes(); //문자열을 바이트배열로 전환
     }
 }

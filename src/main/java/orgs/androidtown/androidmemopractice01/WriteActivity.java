@@ -28,6 +28,14 @@ public class WriteActivity extends AppCompatActivity {
         initListener();
     }
 
+    /**
+     * 내용을 파일에 작성
+     * - 파일 쓰기
+     *  내부저장소 - Internal : 개별앱만 접근가능, 파일탐색기에서 보이지 않는다.
+     *  외부저장소 - External : 모든앱이 접근 가능 > 권한 필요
+     *
+     */
+
     private Memo getMemoFromScreen(){
         Memo memo = new Memo();
         memo.setNo(1);
@@ -35,14 +43,16 @@ public class WriteActivity extends AppCompatActivity {
         memo.setAuthor(editAuthor.getText().toString());
         memo.setContent(editContent.getText().toString());
         memo.setDatetime(System.currentTimeMillis());
-        return memo;
+        return memo; // write클래스에서 작성한 것들을 메모클래스에 set시켜서, 나중에 memo만 불러온다
     }
 
-    private void write(Memo memo){
+    private void write(Memo memo){// 파일에 저장하기 위함!!! 어떤 액티비티이든, 파일에 접근해서 저장하고, 불러오는 기능을 만들 수 있는게 객체지향의 장점!
         try {
-            String filename = System.currentTimeMillis() + ".txt";
+            String filename = System.currentTimeMillis() + ".txt";//.txt로 저장
             FileUtil.write(this, filename, memo.tosting());
-            setResult(RESULT_OK);
+
+            setResult(RESULT_OK); // 나름 호출한 액티비티로 성공/실패 값을 넘겨준다.
+
             Toast.makeText(this, "등록되었습니다!", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             Toast.makeText(this, "에러:"+e.toString(), Toast.LENGTH_SHORT).show();
@@ -61,8 +71,8 @@ public class WriteActivity extends AppCompatActivity {
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Memo memo = getMemoFromScreen();
-                write(memo);
+                Memo memo = getMemoFromScreen(); // 화면에서 작성하는 것들을 객체에 담아서 저장시킴.
+                write(memo); // 이를 파일에
             }
         });
     }

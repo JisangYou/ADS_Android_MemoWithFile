@@ -38,8 +38,10 @@ public class ListActivity extends AppCompatActivity {
 
     }
 
-    private ArrayList<Memo> loadData() {// 데이터 메서드
+    private ArrayList<Memo> loadData() {// 파일에 저장되어 있는 것을 불러오는 용도, 파일 or 데이터베이스의 목적은 바로 저장하고 불러오는거!
         ArrayList<Memo> result = new ArrayList<>();
+        // 파일목록에서 파일을 하나씩 꺼낸 후에
+        // Memo 클래스로 변환한 후 result에 담는다.
         for (File item : getFilesDir().listFiles()) {
             try {
                 String text = FileUtil.read(this, item.getName());
