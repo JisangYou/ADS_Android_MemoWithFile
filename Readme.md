@@ -582,4 +582,4 @@ File file = new File(getFilesDir(), FILENAME) ;
 - 게시판에 추가적인 기능(삭제, 수정 등) 만들어 볼것.
 
 ## Output
-- 생략
+- 추후 올릴 예정
